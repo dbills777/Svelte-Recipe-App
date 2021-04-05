@@ -1,32 +1,23 @@
 <script>
 	import ShoppingList from './components/ShoppingList.svelte'
 	export let name;
+
+	const fetchData = async () => {
+		let APP_ID = '7a3b527b';
+		let API_KEY = 'cff1b76216750fc0f9562b48024b323f';
+		let response = await fetch(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${API_KEY}&q=pizza`);
+		let data = await response.json();
+		console.log(data);
+	}
+	fetchData();
 </script>
 
 <main>
 	<ShoppingList></ShoppingList>
 	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<input type="text">
 </main>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+	
 </style>
