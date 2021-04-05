@@ -27,51 +27,8 @@
     items = items.filter(i => i !== item);
   };
 
-//   const toggle = item => {
-//     item.done = !item.done;
-//     items = items;
-//   };
-    // let newItem = '';
-    // let quantity = '';
-    // let ingredient = '';
-    // let shoppingList = [
-    //     {
-    //         ingredient: 'Apples',
-    //         quantity: {
-    //             unit: null,
-    //             amount: .5
-    //         },
-    //         status: false
-    //     },
-    //     {
-    //         ingredient: 'Peanut Butter',
-    //         quantity: {
-    //             unit: 'oz',
-    //             amount: 3
-    //         },
-    //         status: false
-    //     }
-    // ];
-//     const toggle = item => {
-//     item.status = !item.status;
-//     items = items;
-//   };
-
-//     function addToList() {
-//         shoppingList = [...shoppingList, {ingredient: newItem, quantity, status: false}];
-//         newItem = '';
-//     }
-
-//     function removeFromList(item) {
-//         shoppingList.splice(index, 1)
-//         shoppingList = shoppingList
-
-//     }
 </script>
 
-<!-- <input bind:value={newItem} type='text' placeholder='add another ingredient'>
-<button on:click={addToList}>Add</button>
-<br/> -->
 <div>
     <h1>Shopping List</h1>
   
