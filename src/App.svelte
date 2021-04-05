@@ -1,4 +1,5 @@
 <script>
+	import ShoppingList from './components/ShoppingList.svelte'
 	export let name;
 
 	const fetchData = async () => {
@@ -12,6 +13,7 @@
 </script>
 
 <main>
+	<ShoppingList></ShoppingList>
 	<h1>Hello {name}!</h1>
 	<input type="text">
 </main>
