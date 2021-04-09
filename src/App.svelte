@@ -1,5 +1,7 @@
 <script>
 	import ShoppingList from './components/ShoppingList.svelte'
+	import recipeData from './json/recipes.json';
+	import _ from 'lodash';
 	export let name;
 
 	const fetchData = async () => {
@@ -9,15 +11,23 @@
 		let data = await response.json();
 		console.log(data);
 	}
-	fetchData();
+	// fetchData();
+
+	console.log(recipeData);
+
+	const src = _.get(recipeData[4], 'image')
+
 </script>
 
 <main>
 	<ShoppingList></ShoppingList>
 	<h1>Hello {name}!</h1>
 	<input type="text">
+	<!-- <div class="small-container">
+		<img {src} class="responsive-image" alt="pecan pie test">
+	</div> -->
 </main>
 
 <style>
-	
+
 </style>
