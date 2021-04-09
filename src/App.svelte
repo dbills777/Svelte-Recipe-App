@@ -15,7 +15,6 @@
 
 	console.log(recipeData);
 
-	const src = _.get(recipeData[4], 'image')
 
 </script>
 
@@ -23,9 +22,6 @@
 	<ShoppingList></ShoppingList>
 	<h1>Hello {name}!</h1>
 	<input type="text">
-	<!-- <div class="small-container">
-		<img {src} class="responsive-image" alt="pecan pie test">
-	</div> -->
 </main>
 
 <style>
