@@ -1,6 +1,8 @@
 <script>
-    import { Card, CardBody, CardFooter, Icon } from 'sveltestrap';
+    import { Card, CardBody, CardFooter } from 'sveltestrap';
+    import IoMdHeart from 'svelte-icons/io/IoMdHeart.svelte';
     import recipeData from '../json/recipes.json';
+
 </script>
 
 <div class="favorites-main">
@@ -12,8 +14,12 @@
                         <img src="{recipe.image}" alt="anything">
                     </CardBody>
                     <CardFooter>
-                        <p>{recipe.name}</p>
-                        <Icon name="heart" />
+                        <div class="footer">
+                            <p>{recipe.name}</p>
+                            <div class="icon" on:click={() => onFavoriteClick(recipe)}>
+                                <IoMdHeart />
+                            </div>
+                        </div>
                     </CardFooter>
                 </Card>
             {/if}
@@ -29,5 +35,14 @@
     }
     .favorites-card {
         margin-bottom: 20px;
+    }
+    .footer {
+        display: flex;
+        justify-content: space-between;
+    }
+    .icon {
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
     }
 </style>

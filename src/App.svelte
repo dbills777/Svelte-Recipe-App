@@ -6,7 +6,7 @@
 	import _ from 'lodash';
 	export let name;
 
-	console.log(recipeData);
+	console.log((recipeData));
 
 
 </script>
@@ -20,7 +20,7 @@
 		<ShoppingList></ShoppingList>
 	</div>
 
-<!-- <Favorites /> -->
+<Favorites />
 
 </main>
 

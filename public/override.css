@@ -1,7 +1,7 @@
 /* This was created to override the bootstrap styles used by sveltestrap. Put your sveltestrap component styles here */
 
 .card {
-    width: 300px;
+    width: 340px;
     height: 400px;
 }
 .card-body {

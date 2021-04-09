@@ -25,7 +25,7 @@
         "id": 1,
         "name": "Baked Shrimp Scampi",
         "image": "./images/1_baked_shrimp_scampi.jpg",
-        "favorite": false,
+        "favorite": true,
         "rating": "5/10",
         "instructions" : [
             { "one": "Preheat the oven to 425 degrees F." },
@@ -133,7 +133,7 @@
         "id": 2,
         "name": "Strawberries Romanov",
         "image": "./images/2_strawberries_romanov.jpg",
-        "favorite": false,
+        "favorite": true,
         "rating": "8/10",
         "instructions" : [
             "Wash strawberries and cut the tops off. Let strawberries drain",
@@ -171,7 +171,7 @@
         "id": 3,
         "name": "Tomato Basil Soup",
         "image": "./images/3_tomato_basil_soup.jpg",
-        "favorite": false,
+        "favorite": true,
         "rating": "7/10",
         "instructions" : [
             "Combine tomatoes, juice and stock in saucepan. Simmer 30 min.",
