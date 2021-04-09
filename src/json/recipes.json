@@ -24,7 +24,7 @@
     {
         "id": 1,
         "name": "Baked Shrimp Scampi",
-        "image": "../images/1_baked_shrimp_scampi.jpg",
+        "image": "./images/1_baked_shrimp_scampi.jpg",
         "favorite": false,
         "rating": "5/10",
         "instructions" : [
@@ -132,7 +132,7 @@
     {
         "id": 2,
         "name": "Strawberries Romanov",
-        "image": "../images/2_strawberries_romanov.jpg",
+        "image": "./images/2_strawberries_romanov.jpg",
         "favorite": false,
         "rating": "8/10",
         "instructions" : [
@@ -170,7 +170,7 @@
     {
         "id": 3,
         "name": "Tomato Basil Soup",
-        "image": "../images/3_tomato_basil_soup.jpg",
+        "image": "./images/3_tomato_basil_soup.jpg",
         "favorite": false,
         "rating": "7/10",
         "instructions" : [
@@ -227,7 +227,7 @@
     {
         "id": 4,
         "name": "Pecan Pie",
-        "image": "../images/4_pecan_pie.jpeg",
+        "image": "./images/4_pecan_pie.jpeg",
         "favorite": false,
         "rating": "9/10",
         "instructions" : [
@@ -295,7 +295,7 @@
     {
         "id": 5,
         "name": "Guacamole",
-        "image": "../images/5_guacamole.jpg",
+        "image": "./images/5_guacamole.jpg",
         "favorite": false,
         "rating": "10/10",
         "instructions" : [
