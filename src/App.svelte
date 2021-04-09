@@ -1,5 +1,7 @@
 <script>
 	import ShoppingList from './components/ShoppingList.svelte'
+	import recipeData from './json/recipes.json';
+	import _ from 'lodash';
 	export let name;
 
 	const fetchData = async () => {
@@ -9,7 +11,11 @@
 		let data = await response.json();
 		console.log(data);
 	}
-	fetchData();
+	// fetchData();
+
+	console.log(recipeData);
+
+
 </script>
 
 <main>
@@ -19,5 +25,5 @@
 </main>
 
 <style>
-	
+
 </style>
