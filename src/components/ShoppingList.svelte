@@ -1,11 +1,39 @@
 <script>
+  import recipeData from '../json/recipes.json';
+  import _ from 'lodash';
+  console.log('recipeData--->', recipeData);
+
+  // let data = _.forEach(recipeData, 'ingredients', 'red');
+  // const isFavorite = _.get(recipeData, 'favorite')
+  // data.ingredients.map((ingredient) => {
+  //   return { ingredient, done: false };
+  // })
+  let recipes;
+
+  const data = _.forEach(recipeData, function(value) {
+    console.log('value ingredients--', value.ingredients);
+    const isFavorite = _.get(value, 'favorite');
+    let theStuff;
+
+    if (isFavorite) {
+      console.log('this is a favorite', value);
+      theStuff = value.ingredients
+      
+    }
+    return theStuff;
+  });
+  console.log('recipes----', theStuff);
+
       let items = [
+        ...theStuff, 
     { id: 1, name: "Apples", quantity: 2, done: false },
     { id: 2, name: "Bananas", quantity: 4, done: true },
     { id: 3, name: "Eggs", quantity: 4, done: false },
     { id: 4, name: "Bread", quantity: 1, done: false }
 
   ];
+  console.log('items------>', items);
+
   let name = "";
   let quantity = "";
 
@@ -24,13 +52,21 @@
   };
 
   const remove = item => {
-    items = items.filter(i => i !== item);
+    items = items.filter((i) => i !== item)
+
+    if (item.type) {
+      console.log('items again--', items);
+      console.log('this items has a type', item);
+      let itemToRemove = _.find(items, ['ingredients.name', 'item.name'])
+      console.log('itemToRemove', itemToRemove);
+    }
+    console.log('clicked to remove', item);
   };
 
 </script>
 
 <div>
-    <h1>Shopping List</h1>
+    <h1>Shoppingssadf List <h1>
   
     <form on:submit|preventDefault={addItem}>
       <label for="name">Add an item</label>
@@ -44,17 +80,31 @@
     </form>
   
     <ul>
+      {#each recipeData as recipe}
+      <li>{recipe.name}</li>
+        {#each recipe.ingredients as ingredients}
+        <li class:done={ingredients.done}>
+        <input type="checkbox" bind:checked={ingredients.done} />
+          <span>{ingredients.name}</span>
+          <span id="quantity">{ingredients.quantity}</span>
+
+          <span id="remove" on:click={() => remove(ingredients)}>&times;</span>
+        </li>
+
+      {/each}
+      {/each}
+
       {#each items as item}
         <li class:done={item.done}>
             <input type="checkbox" bind:checked={item.done} />
             <span>{item.name}</span>
-  
     
           <span id="quantity">{item.quantity}</span>
 
           <span id="remove" on:click={() => remove(item)}>&times;</span>
         </li>
       {/each}
+
     </ul>
   </div>
 
