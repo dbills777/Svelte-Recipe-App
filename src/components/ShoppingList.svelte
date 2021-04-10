@@ -8,21 +8,26 @@
   // data.ingredients.map((ingredient) => {
   //   return { ingredient, done: false };
   // })
-  let recipes;
+  let recipes = [];
+  let theStuff;
 
   const data = _.forEach(recipeData, function(value) {
     console.log('value ingredients--', value.ingredients);
     const isFavorite = _.get(value, 'favorite');
-    let theStuff;
 
     if (isFavorite) {
+      const map = _.map(value, 'ingredients')
+      console.log('mapped----', map);
       console.log('this is a favorite', value);
       theStuff = value.ingredients
+      console.log('the stuff', theStuff);
+      recipes.push(theStuff)
+      return recipes
       
     }
-    return theStuff;
+    return;
   });
-  console.log('recipes----', theStuff);
+  console.log('recipes----', recipes);
 
       let items = [
         ...theStuff, 
