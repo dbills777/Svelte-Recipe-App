@@ -3,7 +3,7 @@
     import IoMdHeart from 'svelte-icons/io/IoMdHeart.svelte';
     import recipeData from '../json/recipes.json';
     import Modal from "./Modal.svelte"
-import { each } from 'svelte/internal';
+    import { each } from 'svelte/internal';
 
     let modal
 
@@ -26,12 +26,12 @@ import { each } from 'svelte/internal';
         <img class="modal-img" src="{selectedRecipe.image}" alt="anything">
         <div class=modal-info>
             <h3>{selectedRecipe.name}</h3>
+            <p>Ingredients</p>
             {#each selectedRecipe.ingredients as ingredient}
             <!-- TODO -->
             <!-- update ingredient name so it can be clickable - added to grocery list -->
-            <ul>
-                <li>{ingredient.name}</li>
-            </ul>
+            <!-- add quantities / units -->
+            <p>{ingredient.name}</p>
             {/each}
 
             <p>Instructions</p>
@@ -45,16 +45,20 @@ import { each } from 'svelte/internal';
 </Modal>
 
 
-<div class="recipe-container">
+<div class="favorites-main">
     {#each recipeData as recipe}
-    <div class="recipe-card">
-        <img class="recipe-img" src="{recipe.image}" alt="anything">
-        <div class="recipe-info">
-            <h5 on:click={handleClick(recipe), modal.show()}>{recipe.name}</h5>
-        </div>
-    </div>
-
-{/each}
+        {#if recipe.favorite}
+            <div class="recipe-card">
+                <img class="recipe-card-img" src="{recipe.image}" alt="anything">
+                <div class="recipe-card-info">
+                    <h5 on:click={handleClick(recipe), modal.show()}>{recipe.name}</h5>
+                    <div class="icon" on:click={() => onFavoriteClick(recipe)}>
+                        <IoMdHeart />
+                    </div>
+                </div>
+            </div>
+        {/if}
+    {/each}
 </div>
 
 <!-- <div class="favorites-main">
@@ -83,40 +87,40 @@ import { each } from 'svelte/internal';
     .modal-card {
         display: flex;
     }
-
     .modal-info {
         margin-left: 1rem;
+    }
+    .modal-info p {
+        margin: 0;
+        font-size: .75rem;
     }
     .modal-img {
         width: 40%;
         height: 600px;
         object-fit: cover;
     }
-    .recipe-container {
-        display: flex;
-        flex-wrap: wrap;
-    }
+
     .recipe-card {
-        width: 300px;
+        width: 325px;
         margin: 1rem;
         box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     }
-
-    .recipe-img {
+    .recipe-card-img {
         width: 100%;
         height: 300px;
         object-fit: cover;
     }
-
-    .recipe-info {
-        padding: .5rem;
+    .recipe-card-info {
+        padding: .75rem;
+        display: flex;
+        justify-content: space-between;
     }
-
-    .recipe-info h5 {
+    .recipe-card-info h5 {
         margin: .5rem;
+        font-size: 1rem;
+        font-weight: 400;
     }
-
-    .recipe-info h5:hover {
+    .recipe-card-info h5:hover {
         cursor: pointer;
         text-decoration: underline;
     }
@@ -126,13 +130,13 @@ import { each } from 'svelte/internal';
         flex-wrap: wrap;
         justify-content: space-evenly;
     }
-    .favorites-card {
+    /* .favorites-card {
         margin-bottom: 20px;
     }
     .footer {
         display: flex;
         justify-content: space-between;
-    }
+    } */
     .icon {
         width: 32px;
         height: 32px;

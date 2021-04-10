@@ -13,7 +13,7 @@
 
 {#if shown}
 <div class="model-wrapper">
-    <div class="recipe">
+    <div class="recipe-modal">
         <span class="close-btn" on:click={() => hide()}>&times;</span>
         <slot />
     </div>
@@ -29,7 +29,7 @@
         top: 0;
         left: 0;
     }
-    .recipe {
+    .recipe-modal {
         background-color: white;
         max-width: 85vw;
         padding: 1rem;
