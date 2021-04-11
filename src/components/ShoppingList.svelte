@@ -1,5 +1,5 @@
 <script>
-  import { Col, Container, Row } from "sveltestrap";
+  import { Container } from "sveltestrap";
   import recipeData from "../json/recipes.json";
   import _ from "lodash";
   console.log("recipeData--->", recipeData);
@@ -12,20 +12,24 @@
 
     if (isFavorite) {
       console.log("this is a favorite", value);
-      _.forEach(value.ingredients, function (i) {
-        const stuff = value.ingredients
-        i.sort( function (i) {
-          return i.type
-        })
-        console.log('stuff--', stuff);
 
+      _.forEach(value.ingredients, function (i) {
+        
         console.log("i------!!", i);
         recipeIngredients.push(i);
-        // recipeIngredients.sort( function (a) {
-        //   return a.type
-        // })
-        console.log('type--', recipeIngredients.type);
       });
+      recipeIngredients.sort((a,b) => {
+        let typeA = a.type.toUpperCase();
+        let typeB = b.type.toUpperCase();
+        if (typeA < typeB) {
+          return -1;
+        }
+        if (typeA > typeB) {
+          return 1;
+        }
+        console.log('type--', typeA, typeB);
+        return 0;
+      })
       return recipeIngredients;
     }
   });
@@ -59,27 +63,13 @@
 
   const remove = (item) => {
     items = items.filter((i) => i !== item);
-
-    // if (item.type) {
-    //   console.log('items again--', items);
-    //   console.log('this items has a type', item);
-    //   let itemToRemove = _.find(items, ['ingredients.name', 'item.name'])
-    //   console.log('itemToRemove', itemToRemove);
-    // }
     console.log("clicked to remove", item);
   };
 </script>
 
 <Container>
-  <Row>
-    <Col>
-      .col
-      <h1>Shoppingssadf List</h1>
-    </Col>
-  </Row>
-
   <div>
-    <h1>Shoppingssadf List</h1>
+    <h1>Shopping List</h1>
     <form on:submit|preventDefault={addItem}>
       <label for="name">Add an item</label>
       <div class="inputs">
@@ -96,6 +86,7 @@
 
     <ul>
       {#each items as item}
+      <p>{item.type}</p>
         <li class:done={item.done}>
           <div class="item-name">
             <input type="checkbox" bind:checked={item.done} />
@@ -108,7 +99,6 @@
             {#if item.unit}
               <span id="unit">{item.unit}</span>
             {/if}
-
             <span id="remove" on:click={() => remove(item)}>&times;</span>
           </div>
         </li>
@@ -119,7 +109,6 @@
 
 <style>
   form div.inputs {
-    /* color: red; */
     display: grid;
     grid-template-columns: 2fr 1fr;
   }
@@ -128,14 +117,9 @@
     list-style: none;
     display: flex;
     width: 50%;
-    
-    
-    /* display: grid; */
-    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
     justify-content: space-between;
   }
   li #remove {
-    /* float: right; */
     justify-items: flex-end;
     border: none;
     background: transparent;
