@@ -1,43 +1,44 @@
 <script>
-  import recipeData from '../json/recipes.json';
-  import _ from 'lodash';
-  console.log('recipeData--->', recipeData);
+  import { Col, Container, Row } from "sveltestrap";
+  import recipeData from "../json/recipes.json";
+  import _ from "lodash";
+  console.log("recipeData--->", recipeData);
 
-  // let data = _.forEach(recipeData, 'ingredients', 'red');
-  // const isFavorite = _.get(recipeData, 'favorite')
-  // data.ingredients.map((ingredient) => {
-  //   return { ingredient, done: false };
-  // })
-  let recipes = [];
-  let theStuff;
+  let recipeIngredients = [];
 
-  const data = _.forEach(recipeData, function(value) {
-    console.log('value ingredients--', value.ingredients);
-    const isFavorite = _.get(value, 'favorite');
+  _.forEach(recipeData, function (value) {
+    console.log("value ingredients--", value.ingredients);
+    const isFavorite = _.get(value, "favorite");
 
     if (isFavorite) {
-      const map = _.map(value, 'ingredients')
-      console.log('mapped----', map);
-      console.log('this is a favorite', value);
-      theStuff = value.ingredients
-      console.log('the stuff', theStuff);
-      recipes.push(theStuff)
-      return recipes
-      
-    }
-    return;
-  });
-  console.log('recipes----', recipes);
+      console.log("this is a favorite", value);
+      _.forEach(value.ingredients, function (i) {
+        const stuff = value.ingredients
+        i.sort( function (i) {
+          return i.type
+        })
+        console.log('stuff--', stuff);
 
-      let items = [
-        ...theStuff, 
+        console.log("i------!!", i);
+        recipeIngredients.push(i);
+        // recipeIngredients.sort( function (a) {
+        //   return a.type
+        // })
+        console.log('type--', recipeIngredients.type);
+      });
+      return recipeIngredients;
+    }
+  });
+  console.log("recipes----", recipeIngredients);
+
+  let items = [
+    ...recipeIngredients,
     { id: 1, name: "Apples", quantity: 2, done: false },
     { id: 2, name: "Bananas", quantity: 4, done: true },
     { id: 3, name: "Eggs", quantity: 4, done: false },
-    { id: 4, name: "Bread", quantity: 1, done: false }
-
+    { id: 4, name: "Bread", quantity: 1, done: false },
   ];
-  console.log('items------>', items);
+  console.log("items------>", items);
 
   let name = "";
   let quantity = "";
@@ -49,88 +50,91 @@
         id: Math.random(),
         name,
         quantity,
-        done: false
-      }
+        done: false,
+      },
     ];
     name = "";
     quantity = "";
   };
 
-  const remove = item => {
-    items = items.filter((i) => i !== item)
+  const remove = (item) => {
+    items = items.filter((i) => i !== item);
 
-    if (item.type) {
-      console.log('items again--', items);
-      console.log('this items has a type', item);
-      let itemToRemove = _.find(items, ['ingredients.name', 'item.name'])
-      console.log('itemToRemove', itemToRemove);
-    }
-    console.log('clicked to remove', item);
+    // if (item.type) {
+    //   console.log('items again--', items);
+    //   console.log('this items has a type', item);
+    //   let itemToRemove = _.find(items, ['ingredients.name', 'item.name'])
+    //   console.log('itemToRemove', itemToRemove);
+    // }
+    console.log("clicked to remove", item);
   };
-
 </script>
 
-<div>
-    <h1>Shoppingssadf List <h1>
-  
+<Container>
+  <Row>
+    <Col>
+      .col
+      <h1>Shoppingssadf List</h1>
+    </Col>
+  </Row>
+
+  <div>
+    <h1>Shoppingssadf List</h1>
     <form on:submit|preventDefault={addItem}>
       <label for="name">Add an item</label>
       <div class="inputs">
-      <input id="name" type="text" placeholder="name" bind:value={name} />
-      <input id="quantity" type="text" placeholder="quantity" bind:value={quantity} />
-    </div>
-      <button on:submit|preventDefault={addItem}
-      >Add </button>
-
+        <input id="name" type="text" placeholder="name" bind:value={name} />
+        <input
+          id="quantity"
+          type="text"
+          placeholder="quantity"
+          bind:value={quantity}
+        />
+      </div>
+      <button on:submit|preventDefault={addItem}>Add </button>
     </form>
-  
+
     <ul>
-      {#each recipeData as recipe}
-      <li>{recipe.name}</li>
-        {#each recipe.ingredients as ingredients}
-        <li class:done={ingredients.done}>
-        <input type="checkbox" bind:checked={ingredients.done} />
-          <span>{ingredients.name}</span>
-          <span id="quantity">{ingredients.quantity}</span>
-
-          <span id="remove" on:click={() => remove(ingredients)}>&times;</span>
-        </li>
-
-      {/each}
-      {/each}
-
       {#each items as item}
         <li class:done={item.done}>
+          <div class="item-name">
             <input type="checkbox" bind:checked={item.done} />
             <span>{item.name}</span>
-    
-          <span id="quantity">{item.quantity}</span>
+          </div>
+          <div class="item-details">
+            {#if item.quantity}
+              <span id="quantity">{item.quantity}</span>
+            {/if}
+            {#if item.unit}
+              <span id="unit">{item.unit}</span>
+            {/if}
 
-          <span id="remove" on:click={() => remove(item)}>&times;</span>
+            <span id="remove" on:click={() => remove(item)}>&times;</span>
+          </div>
         </li>
       {/each}
-
     </ul>
   </div>
-
-
-
-
+</Container>
 
 <style>
-form div.inputs{
+  form div.inputs {
     /* color: red; */
     display: grid;
     grid-template-columns: 2fr 1fr;
-}
+  }
 
-li {
+  li {
     list-style: none;
+    display: flex;
+    width: 50%;
+    
+    
     /* display: grid; */
     /* grid-template-columns: 1fr 1fr 1fr 1fr; */
-    /* justify-content: space-between; */
-}
-li #remove{
+    justify-content: space-between;
+  }
+  li #remove {
     /* float: right; */
     justify-items: flex-end;
     border: none;
@@ -142,10 +146,9 @@ li #remove{
     cursor: pointer;
   }
   li #quantity {
-      color:rgb(165, 165, 165);
+    color: rgb(165, 165, 165);
   }
-.done span {
+  .done span {
     opacity: 0.4;
   }
-
 </style>
