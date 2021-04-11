@@ -2,7 +2,7 @@
   import { Container } from "sveltestrap";
   import recipeData from "../json/recipes.json";
   import _ from "lodash";
-  console.log("recipeData--->", recipeData);
+  // console.log("recipeData--->", recipeData);
 
   let recipeIngredients = [];
 
@@ -15,7 +15,7 @@
 
       _.forEach(value.ingredients, function (i) {
         
-        console.log("i------!!", i);
+        // console.log("i------", i);
         recipeIngredients.push(i);
       });
       recipeIngredients.sort((a,b) => {
@@ -27,13 +27,13 @@
         if (typeA > typeB) {
           return 1;
         }
-        console.log('type--', typeA, typeB);
+        // console.log('type--', typeA, typeB);
         return 0;
       })
       return recipeIngredients;
     }
   });
-  console.log("recipes----", recipeIngredients);
+  // console.log("recipes----", recipeIngredients);
 
   let items = [
     ...recipeIngredients,
@@ -42,7 +42,7 @@
     { id: 3, name: "Eggs", quantity: 4, done: false },
     { id: 4, name: "Bread", quantity: 1, done: false },
   ];
-  console.log("items------>", items);
+  // console.log("items------>", items);
 
   let name = "";
   let quantity = "";
