@@ -20,6 +20,7 @@
 </script>
 
 <div class="favorites">
+
     <div class="section-title">Favorites</div>
     <div class="{recipeFavorites.length === 2 ? 'favorites-condensed' : 'favorites-section'}">
         {#if recipeFavorites.length === 0}
