@@ -126,7 +126,7 @@
         "id": 2,
         "name": "Strawberries Romanov",
         "image": "./images/2_strawberries_romanov.jpg",
-        "favorite": true,
+        "favorite": false,
         "rating": "8/10",
         "instructions" : [
             "Wash strawberries and cut the tops off. Let strawberries drain",
@@ -221,7 +221,7 @@
         "id": 4,
         "name": "Pecan Pie",
         "image": "./images/4_pecan_pie.jpeg",
-        "favorite": false,
+        "favorite": true,
         "rating": "9/10",
         "instructions" : [
 
