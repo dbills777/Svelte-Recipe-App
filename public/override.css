@@ -1,13 +1,14 @@
 /* This was created to override the bootstrap styles used by sveltestrap. Put your sveltestrap component styles here */
 
 .card {
-    width: 340px;
-    height: 400px;
+    width: 325px;
+    height: 374px;
 }
 .card-body {
     padding: 0;
 }
 .card-body img {
     width: 100%;
-    height: 100%;
+    height: 300px;
+    object-fit: cover;
 }
