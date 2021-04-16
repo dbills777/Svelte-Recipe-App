@@ -31,9 +31,9 @@
     }
     .recipe-modal {
         background-color: white;
-        max-width: 85vw;
+        max-width: 90vw;
         padding: 1rem;
-        margin: 5% auto;
+        margin: 3% auto;
     }
     .close-btn {
         float: right;
