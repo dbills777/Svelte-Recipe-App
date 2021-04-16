@@ -3,6 +3,7 @@
 .card {
     width: 325px;
     height: 374px;
+    margin: 10px;
 }
 .card-body {
     padding: 0;

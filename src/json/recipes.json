@@ -345,6 +345,189 @@
                 "type": "produce"
             }
         ]
+    },
+    {
+        "id": 5,
+        "name": "Guacamole",
+        "image": "./images/5_guacamole.jpg",
+        "favorite": false,
+        "rating": "10/10",
+        "instructions" : [
+            "Place all ingredients in a bowl with a flat bottom and mash it with a potato masher.  Alternatively, you can mix everything briefly in a food processor.",
+            "Stir well and keep refrigerated. This dish will brown on the areas exposed to air within a few hours, so serve it shortly after making it or just stir again before serving."
+        ],
+        "ingredients": [
+            {
+                "name": "avocados",
+                "unit": null,
+                "quantity": 4,
+                "type": "produce"
+            },
+            {
+                "name": "roma tomatoes",
+                "unit": null,
+                "quantity": 2,
+                "type": "produce"
+            },
+            {
+                "name": "red onion",
+                "unit": "cup",
+                "quantity": 0.5,
+                "type": "produce"
+            },
+            {
+                "name": "cilantro",
+                "unit": "cup",
+                "quantity": 0.5,
+                "type": "produce"
+            },
+            {
+                "name": "garlic",
+                "unit": "cloves",
+                "quantity": 2,
+                "type": "produce"
+            },
+            {
+                "name": "lime",
+                "unit": null,
+                "quantity": 1,
+                "type": "produce"
+            },
+            {
+                "name": "salt",
+                "unit": "pinch",
+                "quantity": 1,
+                "type": "spices"
+            },
+            {
+                "name": "jalapeno",
+                "unit": null,
+                "quantity": 1,
+                "type": "produce"
+            }
+        ]
+    } ,
+    {
+        "id": 5,
+        "name": "Guacamole",
+        "image": "./images/5_guacamole.jpg",
+        "favorite": false,
+        "rating": "10/10",
+        "instructions" : [
+            "Place all ingredients in a bowl with a flat bottom and mash it with a potato masher.  Alternatively, you can mix everything briefly in a food processor.",
+            "Stir well and keep refrigerated. This dish will brown on the areas exposed to air within a few hours, so serve it shortly after making it or just stir again before serving."
+        ],
+        "ingredients": [
+            {
+                "name": "avocados",
+                "unit": null,
+                "quantity": 4,
+                "type": "produce"
+            },
+            {
+                "name": "roma tomatoes",
+                "unit": null,
+                "quantity": 2,
+                "type": "produce"
+            },
+            {
+                "name": "red onion",
+                "unit": "cup",
+                "quantity": 0.5,
+                "type": "produce"
+            },
+            {
+                "name": "cilantro",
+                "unit": "cup",
+                "quantity": 0.5,
+                "type": "produce"
+            },
+            {
+                "name": "garlic",
+                "unit": "cloves",
+                "quantity": 2,
+                "type": "produce"
+            },
+            {
+                "name": "lime",
+                "unit": null,
+                "quantity": 1,
+                "type": "produce"
+            },
+            {
+                "name": "salt",
+                "unit": "pinch",
+                "quantity": 1,
+                "type": "spices"
+            },
+            {
+                "name": "jalapeno",
+                "unit": null,
+                "quantity": 1,
+                "type": "produce"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Guacamole",
+        "image": "./images/5_guacamole.jpg",
+        "favorite": false,
+        "rating": "10/10",
+        "instructions" : [
+            "Place all ingredients in a bowl with a flat bottom and mash it with a potato masher.  Alternatively, you can mix everything briefly in a food processor.",
+            "Stir well and keep refrigerated. This dish will brown on the areas exposed to air within a few hours, so serve it shortly after making it or just stir again before serving."
+        ],
+        "ingredients": [
+            {
+                "name": "avocados",
+                "unit": null,
+                "quantity": 4,
+                "type": "produce"
+            },
+            {
+                "name": "roma tomatoes",
+                "unit": null,
+                "quantity": 2,
+                "type": "produce"
+            },
+            {
+                "name": "red onion",
+                "unit": "cup",
+                "quantity": 0.5,
+                "type": "produce"
+            },
+            {
+                "name": "cilantro",
+                "unit": "cup",
+                "quantity": 0.5,
+                "type": "produce"
+            },
+            {
+                "name": "garlic",
+                "unit": "cloves",
+                "quantity": 2,
+                "type": "produce"
+            },
+            {
+                "name": "lime",
+                "unit": null,
+                "quantity": 1,
+                "type": "produce"
+            },
+            {
+                "name": "salt",
+                "unit": "pinch",
+                "quantity": 1,
+                "type": "spices"
+            },
+            {
+                "name": "jalapeno",
+                "unit": null,
+                "quantity": 1,
+                "type": "produce"
+            }
+        ]
     } 
     
 ]

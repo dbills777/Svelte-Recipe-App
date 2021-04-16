@@ -7,12 +7,16 @@
 
     let query;
     let foundRecipes = [];
-    let user_message = '';
+    let user_message = false;
+    let success;
+    let message;
+
+    let initialRecipes = recipeData.slice(0, 6)
 
     $: {
         const handleSearch = () => {
-            console.log(query, 'called')
-            console.log(recipeData)
+            console.log(query, 'called');
+            console.log(recipeData);
             let filtered = recipeData.filter(recipe => recipe.name.toLowerCase().startsWith(query))
             foundRecipes = filtered;
         }
@@ -24,13 +28,24 @@
     }
 
     const onFavoriteClick = (recipe) => {
-        recipe.favorite = true;
-        recipeFavorites = recipeFavorites.filter(recipe => recipe.favorite);
-        message = `Successfully added ${recipe.name} to favorites.`
+        recipe.favorite = !recipe.favorite;
+        if (recipe.favorite) {
+            message = `Successfully added ${recipe.name} to favorites.`;
+            success = true;
+        } else {
+            success = false;
+            message = `Successfully removed ${recipe.name} from favorites.`;
+        }
         user_message = true;
         setTimeout(() => {
-            user_message = false;
-        }, 5000);
+            user_message = !user_message;
+        }, 2500);
+        if (query) {
+            foundRecipes = foundRecipes;
+        } else {
+            initialRecipes = initialRecipes;
+        }
+        
     }
 
 
@@ -39,21 +54,54 @@
 <div>
     <div class="section-title">Find New Recipes</div>
     <input class="search-input" type="text" bind:value={query}>
-    {#each foundRecipes as recipe}
-        <Card>
-            <CardBody>
-                <img class="card-image" src="{recipe.image}" alt="anything">
-            </CardBody>
-            <CardFooter>
-                <div class="footer">
-                    <p>{recipe.name}</p>
-                    <div class="icon" on:click={() => onFavoriteClick(recipe)}>
-                        <IoMdHeartEmpty />
-                    </div>
-                </div>
-            </CardFooter>
-        </Card>
-    {/each}
+    <div class="search-section">
+        {#if !query}
+            {#each initialRecipes as recipe}
+                <Card>
+                    <CardBody>
+                        <img class="card-image" src="{recipe.image}" alt="anything">
+                    </CardBody>
+                    <CardFooter>
+                        <div class="footer">
+                            <p>{recipe.name}</p>
+                            <div class="icon" on:click={() => onFavoriteClick(recipe)}>
+                                {#if recipe.favorite}
+                                    <IoMdHeart />
+                                {:else}
+                                    <IoMdHeartEmpty />
+                                {/if}
+                            </div>
+                        </div>
+                    </CardFooter>
+                </Card>
+            {/each}
+        {:else}
+            {#each foundRecipes as recipe}
+                <Card>
+                    <CardBody>
+                        <img class="card-image" src="{recipe.image}" alt="anything">
+                    </CardBody>
+                    <CardFooter>
+                        <div class="footer">
+                            <p>{recipe.name}</p>
+                            <div class="icon" on:click={() => onFavoriteClick(recipe)}>
+                                {#if recipe.favorite}
+                                    <IoMdHeart />
+                                {:else}
+                                    <IoMdHeartEmpty />
+                                {/if}
+                            </div>
+                        </div>
+                    </CardFooter>
+                </Card>
+            {/each}
+        {/if}
+    </div>
+    {#if user_message}
+        <div class:green={success} class:red={!success}>
+            {message}
+        </div>
+    {/if}
 </div>
 
 <style>
@@ -64,5 +112,25 @@
 	}
     .search-input {
         width: 300px;
+    }
+    .search-section {
+        display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+    }
+    .footer {
+        display: flex;
+        justify-content: space-between;
+    }
+    .icon {
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+    }
+    .green {
+        color: green;
+    }
+    .red {
+        color: crimson;
     }
 </style>

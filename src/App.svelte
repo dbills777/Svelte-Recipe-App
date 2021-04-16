@@ -3,9 +3,9 @@
   import ShoppingList from "./components/ShoppingList.svelte";
   import FavoritesLanding from "./components/FavoritesLanding.svelte";
   import Favorites from "./components/Favorites.svelte";
-  import SearchRecipes from './components/SearchRecipes.svelte';
   import recipeData from "./json/recipes.json";
   import _ from "lodash";
+import SearchRecipes from "./components/SearchRecipes.svelte";
   console.log(recipeData);
 </script>
 
@@ -21,13 +21,13 @@
     </header>
 
     <div class="home-view">
-	  <Route path="/">
-		<SearchRecipes />
-		<FavoritesLanding />
-	  </Route>
+      <Route path="/">
+        <SearchRecipes />
+        <FavoritesLanding />
+	    </Route>
 
       <Route path="/favorites">
-        <h3>Favorites</h3>
+        <h3>Favorites.svelte</h3>
         <Favorites />
       </Route>
 
