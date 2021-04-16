@@ -26,6 +26,7 @@
         "name": "Baked Shrimp Scampi",
         "image": "./images/1_baked_shrimp_scampi.jpg",
         "favorite": true,
+        "onList": false,
         "rating": "5/10",
         "instructions" : [
             "Preheat the oven to 425 degrees F.",
@@ -40,85 +41,99 @@
                 "name": "panko breadcrumbs",
                 "unit": "cup",
                 "quantity": 0.6,
-                "type": "condiments"
+                "type": "condiments",
+                "onList": false
             },
             {
                 "name": "red pepper flakes",
                 "unit": "tsp",
                 "quantity": 0.25,
-                "type": "spices"
+                "type": "spices",
+                "onList": false
             },
             {
                 "name": "lemon",
                 "unit": null,
                 "quantity": 0.5,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "egg yolk",
                 "unit": null,
                 "quantity": 1,
-                "type": "dairy"
+                "type": "dairy",
+                "onList": false
             },
             {
                 "name": "rosemary",
                 "unit": "tsp",
                 "quantity": 1,
-                "type": "spices"
+                "type": "spices",
+                "onList": false
             },
             {
                 "name": "parsley",
                 "unit": "tbsp",
                 "quantity": 3,
-                "type": "spices"
+                "type": "spices",
+                "onList": false
             },
             {
                 "name": "garlic",
                 "unit": "cloves",
                 "quantity": 4,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "shallots",
                 "unit": "cup",
                 "quantity": 0.25,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "unsalted butter",
                 "unit": "tbsp",
                 "quantity": 8,
-                "type": "dairy"
+                "type": "dairy",
+                "onList": false
             },
             {
                 "name": "white wine",
                 "unit": "tbsp",
                 "quantity": 2,
-                "type": "wine, beer, spirits"
+                "type": "wine, beer, spirits",
+                "onList": false
             },
             {
                 "name": "black pepper",
                 "unit": null,
                 "quantity": null,
-                "type": "spices"
+                "type": "spices",
+                "onList": false
             },
             {
                 "name": "salt",
                 "unit": null,
                 "quantity": null,
-                "type": "spices"
+                "type": "spices",
+                "onList": false
             },
             {
                 "name": "olive oil",
                 "unit": "tbsp",
                 "quantity": 3,
-                "type": "condiments"
+                "type": "condiments",
+                "onList": false
             },
             {
                 "name": "frozen shrimp",
                 "unit": "lbs",
                 "quantity": 2,
-                "type": "meat"
+                "type": "meat",
+                "onList": false
             }
         ]
     },
@@ -127,6 +142,7 @@
         "name": "Strawberries Romanov",
         "image": "./images/2_strawberries_romanov.jpg",
         "favorite": false,
+        "onList": false,
         "rating": "8/10",
         "instructions" : [
             "Wash strawberries and cut the tops off. Let strawberries drain",
@@ -138,25 +154,29 @@
                 "name": "powdered sugar",
                 "unit": "tbsp",
                 "quantity": 2,
-                "type": "baking"
+                "type": "baking",
+                "onList": false
             },
             {
                 "name": "heavy whipping cream",
                 "unit": "cup",
                 "quantity": 1,
-                "type": "dairy"
+                "type": "dairy",
+                "onList": false
             },
             {
                 "name": "strawberries",
                 "unit": "lb",
                 "quantity": 1,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "brandy",
                 "unit": "tbsp",
                 "quantity": 4,
-                "type": "wine, beer, spirits"
+                "type": "wine, beer, spirits",
+                "onList": false
             }
         ]
     },
@@ -165,6 +185,7 @@
         "name": "Tomato Basil Soup",
         "image": "./images/3_tomato_basil_soup.jpg",
         "favorite": true,
+        "onList": false,
         "rating": "7/10",
         "instructions" : [
             "Combine tomatoes, juice and stock in saucepan. Simmer 30 min.",
@@ -177,43 +198,50 @@
                 "name": "tomatoes",
                 "unit": "cup",
                 "quantity": 4,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "vegetable stock",
                 "unit": "cup",
                 "quantity": 4,
-                "type": "canned goods"
+                "type": "canned goods",
+                "onList": false
             },
             {
                 "name": "basil leaves",
                 "unit": null,
                 "quantity": 12,
-                "type": "spices"
+                "type": "spices",
+                "onList": false
             },
             {
                 "name": "heavy cream",
                 "unit": "cup",
                 "quantity": 1,
-                "type": "dairy"
+                "type": "dairy",
+                "onList": false
             },
             {
                 "name": "unsalted butter",
                 "unit": "lbs",
                 "quantity": 0.25,
-                "type": "dairy"
+                "type": "dairy",
+                "onList": false
             },
             {
                 "name": "salt",
                 "unit": null,
                 "quantity": null,
-                "type": "spices"
+                "type": "spices",
+                "onList": false
             },
             {
                 "name": "black pepper",
                 "unit": "tsp",
                 "quantity": 0.25,
-                "type": "spices"
+                "type": "spices",
+                "onList": false
             }
         ]
     },
@@ -222,6 +250,7 @@
         "name": "Pecan Pie",
         "image": "./images/4_pecan_pie.jpeg",
         "favorite": true,
+        "onList": false,
         "rating": "9/10",
         "instructions" : [
 
@@ -237,49 +266,57 @@
                 "name": "salt",
                 "unit": "tsp",
                 "quantity": 0.25,
-                "type": "spices"
+                "type": "spices",
+                "onList": false
             },
             {
                 "name": "eggs",
                 "unit": null,
                 "quantity": 3,
-                "type": "dairy"
+                "type": "dairy",
+                "onList": false
             },
             {
                 "name": "dark rum",
                 "unit": "tbsp",
                 "quantity": 4,
-                "type": "wine, beer, spirits"
+                "type": "wine, beer, spirits",
+                "onList": false
             },
             {
                 "name": "golden syrup",
                 "unit": "cup",
                 "quantity": 0.6,
-                "type": "other"
+                "type": "other",
+                "onList": false
             },
             {
                 "name": "dark brown sugar",
                 "unit": "cup",
                 "quantity": 1,
-                "type": "baking"
+                "type": "baking",
+                "onList": false
             },
             {
                 "name": "pecans",
                 "unit": "cup",
                 "quantity": 2,
-                "type": "nuts & seeds"
+                "type": "nuts & seeds",
+                "onList": false
             },
             {
                 "name": "unbaked pie shell",
                 "unit": null,
                 "quantity": 1,
-                "type": "baking"
+                "type": "baking",
+                "onList": false
             },
             {
                 "name": "butter",
                 "unit": "tbsp",
                 "quantity": 4,
-                "type": "dairy"
+                "type": "dairy",
+                "onList": false
             }
 
         ]
@@ -290,6 +327,7 @@
         "name": "Guacamole",
         "image": "./images/5_guacamole.jpg",
         "favorite": false,
+        "onList": false,
         "rating": "10/10",
         "instructions" : [
             "Place all ingredients in a bowl with a flat bottom and mash it with a potato masher.  Alternatively, you can mix everything briefly in a food processor.",
@@ -300,49 +338,57 @@
                 "name": "avocados",
                 "unit": null,
                 "quantity": 4,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "roma tomatoes",
                 "unit": null,
                 "quantity": 2,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "red onion",
                 "unit": "cup",
                 "quantity": 0.5,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "cilantro",
                 "unit": "cup",
                 "quantity": 0.5,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "garlic",
                 "unit": "cloves",
                 "quantity": 2,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "lime",
                 "unit": null,
                 "quantity": 1,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "salt",
                 "unit": "pinch",
                 "quantity": 1,
-                "type": "spices"
+                "type": "spices",
+                "onList": false
             },
             {
                 "name": "jalapeno",
                 "unit": null,
                 "quantity": 1,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             }
         ]
     },
@@ -351,6 +397,7 @@
         "name": "Guacamole",
         "image": "./images/5_guacamole.jpg",
         "favorite": false,
+        "onList": false,
         "rating": "10/10",
         "instructions" : [
             "Place all ingredients in a bowl with a flat bottom and mash it with a potato masher.  Alternatively, you can mix everything briefly in a food processor.",
@@ -361,49 +408,57 @@
                 "name": "avocados",
                 "unit": null,
                 "quantity": 4,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "roma tomatoes",
                 "unit": null,
                 "quantity": 2,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "red onion",
                 "unit": "cup",
                 "quantity": 0.5,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "cilantro",
                 "unit": "cup",
                 "quantity": 0.5,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "garlic",
                 "unit": "cloves",
                 "quantity": 2,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "lime",
                 "unit": null,
                 "quantity": 1,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             },
             {
                 "name": "salt",
                 "unit": "pinch",
                 "quantity": 1,
-                "type": "spices"
+                "type": "spices",
+                "onList": false
             },
             {
                 "name": "jalapeno",
                 "unit": null,
                 "quantity": 1,
-                "type": "produce"
+                "type": "produce",
+                "onList": false
             }
         ]
     } ,
