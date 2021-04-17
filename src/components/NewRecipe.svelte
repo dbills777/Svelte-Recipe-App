@@ -12,33 +12,7 @@
   let allRecipes = [...recipeData]
   console.log(allRecipes)
 
-    _.forEach(recipeData, function (value) {
-    // console.log("value ingredients--", value.ingredients);
-    const isFavorite = _.get(value, "favorite");
 
-    if (isFavorite) {
-      // console.log("this is a favorite", value);
-
-      _.forEach(value.ingredients, function (i) {
-
-        // console.log("i------", i);
-        recipeIngredients.push(i);
-      });
-      recipeIngredients.sort((a,b) => {
-        let typeA = a.type.toUpperCase();
-        let typeB = b.type.toUpperCase();
-        if (typeA < typeB) {
-          return -1;
-        }
-        if (typeA > typeB) {
-          return 1;
-        }
-        // console.log('type--', typeA, typeB);
-        return 0;
-      })
-      return recipeIngredients;
-    }
-  });
   let items = [
     ...allRecipes,
     {
