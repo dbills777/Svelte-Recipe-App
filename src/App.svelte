@@ -6,6 +6,7 @@
   import recipeData from "./json/recipes.json";
   import _ from "lodash";
 import SearchRecipes from "./components/SearchRecipes.svelte";
+import NewRecipe from "./components/NewRecipe.svelte";
   console.log(recipeData);
 </script>
 
@@ -17,6 +18,7 @@ import SearchRecipes from "./components/SearchRecipes.svelte";
 		<Link to="/">Home</Link>
         <Link to="/favorites">Favorites</Link>
         <Link to="/shoppinglist">ShoppingList</Link>
+        <Link to="/newRecipe">New Recipe</Link>
       </nav>
     </header>
 
@@ -33,6 +35,9 @@ import SearchRecipes from "./components/SearchRecipes.svelte";
 
       <Route path="/shoppinglist">
         <ShoppingList />
+      </Route>
+      <Route path="/newRecipe">
+        <NewRecipe />
       </Route>
 
     </div>
