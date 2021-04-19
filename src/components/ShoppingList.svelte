@@ -37,14 +37,12 @@
   //function adds an entire recipe to the grocery list
   function addedRecipe() {
     _.forEach(recipeData, function (value) {
-      // console.log("value ingredients--", value.ingredients);
       const isRecipeOnList = _.get(value, "onList");
 
       if (isRecipeOnList) {
         console.log("this is on the grocery list", value);
 
         _.forEach(value.ingredients, function (i) {
-          // console.log("i------", i);
           recipeIngredients.push(i);
         });
 
@@ -57,21 +55,14 @@
   //function adds individual ingredients from a recipe to list
 
   _.forEach(recipeData, function (recipe) {
-    // console.log('recipeData----->', recipeData);
-    // console.log("value --", recipe);
     const stuff = _.get(recipe, "ingredients");
-    // console.log('recipeIngredients---', recipeIngredients);
     _.forEach(stuff, function (metadata) {
-      // console.log('ingredients metadata----', metadata);
       const isIngredientOnList = _.get(metadata, "onList");
       if (isIngredientOnList) {
-        // console.log('metadata that is ON LIST-----', metadata);
         recipeIngredients.push(metadata);
-        // console.log('recipeIngredeints--', recipeIngredients);
         return recipeIngredients;
       }
     });
-    // console.log('individualIngredients--', individualIngredients);
   });
 
   //function to SORT all shopping list items by type, then name
@@ -100,46 +91,84 @@
   console.log("removed duplicates", _.uniqWith(recipeIngredients, _.isEqual));
 
   //function to combine multiples of the same item
+  // function isEquivalent(a, b) {
+  //   // Create arrays of property names
+  //   var aProps = Object.getOwnPropertyNames(a);
+  //   var bProps = Object.getOwnPropertyNames(b);
+  //
+  //   // If number of properties is different,
+  //   // objects are not equivalent
+  //   if (aProps.length != bProps.length) {
+  //     return false;
+  //   }
+  //
+  //   for (var i = 0; i < aProps.length; i++) {
+  //     var propName = aProps[i];
+  //
+  //     // If values of same property are not equal,
+  //     // objects are not equivalent
+  //     if (a[propName] !== b[propName]) {
+  //       return false;
+  //     }
+  //   }
+  //
+  //   // If we made it this far, objects
+  //   // are considered equivalent
+  //   return true;
+  // }
 
-  function findDuplicateNames(arr) {
-    let nameArr = [];
+  function addAmountsOfDuplicates(arr) { //need to put objects with same name in their own arrays together.
+    const duplicateIngredients = findDuplicateNames(recipeIngredients);
+    console.log('array---', arr);
+    console.log('dupes--', duplicateIngredients);
+    let arrayOne = [];
+    let arrayTwo = [];
     _.forEach(arr, (i) => {
-      nameArr.push(i.name);
+      arrayOne.push(i.name);
     });
-    const reducedArr = _.reduce(
-      nameArr,
-      (res, value, key) => {
-        (res[value] || (res[value] = [])).push(key);
-        return res;
-      },
-      {}
-    );
-    console.log('redArr--', reducedArr);
 
-    const stuffs =_.forEach(reducedArr, (i) => {
-      if (_.nth(i, 1)) {
-        console.log("this is a duplicate--", i);
-        // dupe.push(i[0]);
-        return i[0];
+
+    _.forEach(duplicateIngredients, (i) => {
+      console.log('i--', i);
+
+      if (i === arr.name) {
+        console.log('arr name', arr.name);
       }
-      return null;
-    });
 
-    let duplicates = [];
-    _.forEach(stuffs, (i) => {
-      console.log("-----sadkjl", nameArr[i]);
-      console.log("nnnnn", nameArr[i]);
-      duplicates.push(nameArr[i]);
-      console.log("duplicates", duplicates);
+      console.log(arr[i]);
+      arrayTwo.push(arr[i]);
+      console.log('----', arrayTwo[i]);
     });
-    return duplicates;
+    console.log('array2', arrayTwo);
+
   }
 
-  findDuplicateNames(recipeIngredients);
-  console.log(
-    "duplicate ingredients---->",
-    findDuplicateNames(recipeIngredients)
-  );
+  function findDuplicateNames(arr) {
+    let ingredientNames = [];
+    _.forEach(arr, (i) => {
+      ingredientNames.push(i.name);
+    });
+    const reducedArr = _.reduce(ingredientNames, (res, value, key) => {
+        (res[value] || (res[value] = [])).push(key);
+        return res;
+      }, {}
+    );
+    let duplicateNamesIndex = [];
+    _.forEach(reducedArr, (i) => {
+      if (_.nth(i, 1)) {
+        duplicateNamesIndex.push(i[0], i[1]);
+      }
+    });
+
+    let duplicateNames = [];
+    _.forEach(duplicateNamesIndex, (i) => {
+      duplicateNames.push(ingredientNames[i]);
+    });
+    return duplicateNames;
+  }
+addAmountsOfDuplicates(recipeIngredients)
+  // findDuplicateNames(recipeIngredients);
+  // console.log("duplicate ingredients---->", findDuplicateNames(recipeIngredients));
 
   let items = [
     ...recipeIngredients,
