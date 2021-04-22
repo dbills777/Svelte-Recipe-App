@@ -85,7 +85,7 @@
     </form>
 
     <ul>
-      {#each items as item}
+      {#each items as item, i}
       <p>{item.type}</p>
         <li class:done={item.done}>
           <div class="item-name">

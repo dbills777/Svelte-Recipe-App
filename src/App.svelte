@@ -5,7 +5,7 @@
   import Favorites from "./components/Favorites.svelte";
   import recipeData from "./json/recipes.json";
   import _ from "lodash";
-import SearchRecipes from "./components/SearchRecipes.svelte";
+  import SearchRecipes from "./components/SearchRecipes.svelte";
   console.log(recipeData);
 </script>
 
