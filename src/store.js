@@ -5,7 +5,7 @@ const groceryListStore = writable([
     {
         "ingredients": [
             {
-                "name": "store ingredient 1",
+                "name": "test ingredient 1",
                 "unit": "cup",
                 "quantity": 3,
                 "type": "condiments",

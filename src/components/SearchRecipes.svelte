@@ -46,7 +46,6 @@
             success = false;
             message = `Successfully removed ${recipe.name} from favorites.`;
         }
-        user_message = true;
         setTimeout(() => {
             user_message = !user_message;
         }, 2500);

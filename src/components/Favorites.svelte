@@ -23,6 +23,7 @@
     }
     // -------------- modal end -------------- //
 
+    let message = false
 
     // -------------- Adding to store -------------- //
 
@@ -45,8 +46,28 @@
             ]
         }
         $groceryListStore = [...$groceryListStore, groceryItem]
+        message = true;
     }
     // -------------- adding to store end -------------- //
+    function checkArray(arr, name){ // checks for object value within an array
+        const found = arr.some(n => n.name == name);
+        if (found) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function checkGroceryList(list, name) { // loops through array of objects, checks each ingredient object array for value
+        list.forEach(function (arrayItem) {
+            console.log(checkArray(arrayItem.ingredients, name))
+            checkArray(arrayItem.ingredients, name)
+        })
+    }
+
+    // testing out if certain ingredients are already in the grocery list saved in the store
+    checkGroceryList(groceryList, 'test ingredient 1')
+    checkGroceryList(groceryList, 'test')
 
 
 </script>
@@ -78,14 +99,18 @@
                 <tr class="table-fade" on:click={() => addIndividualIngredient(selectedRecipe, i)}>
                   <td>{ingredient.name}</td>
                   <td>{ingredient.quantity} {ingredient.unit}</td>
-                  {#if selectedRecipe.onList === true}
+                  {#if checkGroceryList(groceryList, `${ingredient.name}`)}
                     <td>yes</td>
                     {:else}
-                     <td>{i}</td>
+                     <td>no</td>
                     {/if}
                 </tr>
                 {/each}
               </table>
+
+              {#if message}
+              <p>added item</p>
+              {/if}
 
             <div>
                 <h5>Instructions</h5>
@@ -96,8 +121,6 @@
         </div>
     </div>
 </Modal>
-
-
 
 <div class="card-container">
     {#each recipeData as recipe}
@@ -205,7 +228,7 @@
         flex-wrap: wrap;
         /* justify-content: space-evenly; */
     }
-    
+
     /* .icon {
         width: 32px;
         height: 32px;

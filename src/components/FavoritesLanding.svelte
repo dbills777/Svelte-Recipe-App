@@ -15,7 +15,6 @@
     }
     // -------------- modal end -------------- //
 
-
     let recipeFavorites = recipeData.filter(recipe => recipe.favorite);
     let user_message = false;
     let message = '';
