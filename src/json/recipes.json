@@ -1,22 +1,29 @@
 [
     {
         "id": "number",
-        "name": "name",
-        "image": "img",
-        "favorite": false,
+        "name": "Recipe Test",
+        "image": "./images/default-placeholder-image.png",
+        "favorite": true,
         "rating": "string",
         "instructions" : [
-            {
-                "step": "string",
-                "stepNum": "number"
-            }
+            "Wash strawberries and cut the tops off. Let strawberries drain",
+            "Mix together heavy whipping cream, powdered sugar, and the brandy.",
+            "Beat with a mixer till this becomes thick. Place strawberries into glasses and spoon over the sauce."
         ],
         "ingredients": [
             {
-                "name": "",
-                "unit": "",
-                "quantity": 1,
-                "type": ""
+                "name": "test ingredient 1",
+                "unit": "tbsp",
+                "quantity": 3,
+                "type": "condiments",
+                "onList": false
+            },
+            {
+                "name": "test ingredient 2",
+                "unit": "tbsp",
+                "quantity": 3,
+                "type": "condiments",
+                "onList": false
             }
         ]
 
