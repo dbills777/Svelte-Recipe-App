@@ -1,5 +1,4 @@
 <script>
-	import { Card, CardBody, CardFooter } from 'sveltestrap';
     import recipeData from '../json/recipes.json';
     import IoMdHeartEmpty from 'svelte-icons/io/IoMdHeartEmpty.svelte';
     import IoMdHeart from 'svelte-icons/io/IoMdHeart.svelte';

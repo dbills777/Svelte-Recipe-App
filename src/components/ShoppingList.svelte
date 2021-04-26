@@ -4,7 +4,7 @@
   import _ from "lodash";
   // console.log("recipeData--->", recipeData);
 
-  let recipeIngredients = [];
+  export let recipeIngredients = [];
 
   // _.forEach(recipeData, function (value) {
   //   console.log("value ingredients--", value.ingredients);

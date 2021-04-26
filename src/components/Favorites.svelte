@@ -1,9 +1,6 @@
 <script>
-    import { Card, CardBody, CardFooter, InputGroup } from 'sveltestrap';
-    import IoMdHeart from 'svelte-icons/io/IoMdHeart.svelte';
     import recipeData from '../json/recipes.json';
     import Modal from "./Modal.svelte"
-    import { each } from 'svelte/internal';
     import groceryListStore from '../store.js'
 
     // -------------- store data -------------- //

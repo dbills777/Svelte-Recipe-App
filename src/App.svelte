@@ -1,6 +1,7 @@
 <script>
   import { Router, Route, Link } from "svelte-navigator";
   import ShoppingList from "./components/ShoppingList.svelte";
+  import ShoppingListLanding from './components/ShoppingListLanding.svelte';
   import FavoritesLanding from "./components/FavoritesLanding.svelte";
   import Favorites from "./components/Favorites.svelte";
   import recipeData from "./json/recipes.json";
@@ -22,7 +23,6 @@
 
     $: {
         const handleSearch = () => {
-            console.log(query, 'called');
             console.log(recipeData);
             let filtered = recipeData.filter(recipe => recipe.name.toLowerCase().startsWith(query))
             foundRecipes = filtered;
@@ -86,7 +86,7 @@
         <Link class="nav-link" to="/shoppinglist">ShoppingList</Link>
 			</li>
 			<li class="nav-item">
-      <Link class="nav-link" to="/newRecipe">New Recipe</Link>
+        <Link class="nav-link" to="/newRecipe">New Recipe</Link>
 			</li>
 		</ul>
 		<form class="form-inline my-2 my-lg-0">
@@ -182,6 +182,10 @@
         </div>
     {/if}
 </div>
+    <br>
+    <br>
+    <FavoritesLanding />
+    <ShoppingListLanding />
 	    </Route>
 
       <Route path="/favorites">
