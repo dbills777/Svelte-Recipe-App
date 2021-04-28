@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-
+//replaces json recipe Data
 const recipeStore = writable([
   {
     id: 1,
