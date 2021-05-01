@@ -2,71 +2,66 @@
   import { Container } from "sveltestrap";
   import recipeData from "../json/recipes.json";
   import _ from "lodash";
-  // console.log("recipeData--->", recipeData);
+  import groceryListStore from "../store.js";
 
   export let recipeIngredients = [];
+  // -------------- store data -------------- //
+  let groceryList = [];
+  groceryListStore.subscribe((data) => {
+    // keeps track of updates to the store, sends data to "grocery list which can then be looped through/displayed"
+    groceryList = data;
+  });
+  console.log("groceryList----->", groceryList);
 
-  // _.forEach(recipeData, function (value) {
-  //   console.log("value ingredients--", value.ingredients);
-  //   const isFavorite = _.get(value, "favorite");
+  _.map(groceryList, (items) => {
+      _.forEach(items, (ingredients) => {
+          _.map(ingredients, (i) => {
+            console.log('i', i);
+            const isOnList = _.get(i, 'onList');
+            if (isOnList) {
+            recipeIngredients.push(i)
+            }
+          })
+      })
+  })
+  console.log('recipeIngred--', recipeIngredients);
 
-  //   if (isFavorite) {
-  //     console.log("this is a favorite", value);
 
-  //     _.forEach(value.ingredients, function (i) {
-
-  //       // console.log("i------", i);
-  //       recipeIngredients.push(i);
-  //     });
-  //     recipeIngredients.sort((a,b) => {
-  //       let typeA = a.type.toUpperCase();
-  //       let typeB = b.type.toUpperCase();
-  //       if (typeA < typeB) {
-  //         return -1;
-  //       }
-  //       if (typeA > typeB) {
-  //         return 1;
-  //       }
-  //       // console.log('type--', typeA, typeB);
-  //       return 0;
-  //     })
-  //     return recipeIngredients;
-  //   }
-  // });
 
   //function adds an entire recipe to the grocery list
-  function addedRecipe() {
-    _.forEach(recipeData, function (value) {
-      const isRecipeOnList = _.get(value, "onList");
+  // function addedRecipe() {
+  //   _.forEach(recipeData, function (value) {
+  //     const isRecipeOnList = _.get(value, "onList");
 
-      if (isRecipeOnList) {
-        console.log("this is on the grocery list", value);
+  //     if (isRecipeOnList) {
+  //       _.forEach(value.ingredients, function (i) {
+  //         recipeIngredients.push(i);
+  //       });
 
-        _.forEach(value.ingredients, function (i) {
-          recipeIngredients.push(i);
-        });
+  //       return recipeIngredients;
+  //     }
+  //   });
+  // }
+  // addedRecipe();
 
-        return recipeIngredients;
-      }
-    });
-  }
-  addedRecipe();
-
-  //function adds individual ingredients from a recipe to list
-
-  _.forEach(recipeData, function (recipe) {
+  //adds individual ingredients from a recipe to list
+  _.forEach(recipeIngredients, function (recipe) {
     const stuff = _.get(recipe, "ingredients");
+    console.log('stuff--->', stuff);
     _.forEach(stuff, function (metadata) {
       const isIngredientOnList = _.get(metadata, "onList");
+      console.log('isIngredientOnList---->', isIngredientOnList);
       if (isIngredientOnList) {
+        console.log('this isgredient is true on the list---->', metadata);
         recipeIngredients.push(metadata);
         return recipeIngredients;
+      } else {
+        return;
       }
     });
   });
 
-  //function to SORT all shopping list items by type, then name
-
+  // SORT all shopping list items by type, then name
   recipeIngredients.sort((a, b) => {
     let typeA = a.type.toUpperCase();
     let typeB = b.type.toUpperCase();
@@ -86,126 +81,67 @@
     return 0;
   });
 
-  //function to delete all exact duplicates
+  //delete all exact duplicates
   recipeIngredients = _.uniqWith(recipeIngredients, _.isEqual);
-  console.log("removed duplicates", _.uniqWith(recipeIngredients, _.isEqual));
-
-  //function to combine multiples of the same item
-  // function isEquivalent(a, b) {
-  //   // Create arrays of property names
-  //   var aProps = Object.getOwnPropertyNames(a);
-  //   var bProps = Object.getOwnPropertyNames(b);
-  //
-  //   // If number of properties is different,
-  //   // objects are not equivalent
-  //   if (aProps.length != bProps.length) {
-  //     return false;
-  //   }
-  //
-  //   for (var i = 0; i < aProps.length; i++) {
-  //     var propName = aProps[i];
-  //
-  //     // If values of same property are not equal,
-  //     // objects are not equivalent
-  //     if (a[propName] !== b[propName]) {
-  //       return false;
-  //     }
-  //   }
-  //
-  //   // If we made it this far, objects
-  //   // are considered equivalent
-  //   return true;
-  // }
-
-  function addAmountsOfDuplicates(arr) { //need to put objects with same name in their own arrays together.
-    const duplicateIngredients = findDuplicateNames(recipeIngredients);
-    console.log('array---', arr);
-    console.log('dupes--', duplicateIngredients);
-    let arrayOne = [];
-    let arrayTwo = [];
-    _.forEach(arr, (i) => {
-      arrayOne.push(i.name);
-    });
 
 
-    _.forEach(duplicateIngredients, (i) => {
-      console.log('i--', i);
-
-      if (i === arr.name) {
-        console.log('arr name', arr.name);
-      }
-
-      console.log(arr[i]);
-      arrayTwo.push(arr[i]);
-      console.log('----', arrayTwo[i]);
-    });
-    console.log('array2', arrayTwo);
-
-  }
-
-  function findDuplicateNames(arr) {
-    let ingredientNames = [];
-    _.forEach(arr, (i) => {
-      ingredientNames.push(i.name);
-    });
-    const reducedArr = _.reduce(ingredientNames, (res, value, key) => {
-        (res[value] || (res[value] = [])).push(key);
-        return res;
-      }, {}
-    );
-    let duplicateNamesIndex = [];
-    _.forEach(reducedArr, (i) => {
-      if (_.nth(i, 1)) {
-        duplicateNamesIndex.push(i[0], i[1]);
-      }
-    });
-
-    let duplicateNames = [];
-    _.forEach(duplicateNamesIndex, (i) => {
-      duplicateNames.push(ingredientNames[i]);
-    });
-    return duplicateNames;
-  }
-addAmountsOfDuplicates(recipeIngredients)
-  // findDuplicateNames(recipeIngredients);
-  // console.log("duplicate ingredients---->", findDuplicateNames(recipeIngredients));
+  let storeItems;
 
   let items = [
     ...recipeIngredients,
-    { id: 1, name: "Apples", quantity: 2, done: false },
-    { id: 2, name: "Bananas", quantity: 4, done: true },
-    { id: 3, name: "Eggs", quantity: 4, done: false },
-    { id: 4, name: "Bread", quantity: 1, done: false },
+    // { id: 1, name: "Apples", quantity: 2, type: 'fruit', onList: true, done: false }
+    // { id: 2, name: "Bananas", quantity: 4, done: true },
+    // { id: 3, name: "Eggs", quantity: 4, done: false },
+    // { id: 4, name: "Bread", quantity: 1, done: false },
   ];
   console.log("items------>", items);
 
   let name = "";
   let quantity = "";
 
+
   const addItem = () => {
+
     items = [
       ...items,
       {
-        id: Math.random(),
         name,
+        unit: '',
         quantity,
-        done: false,
-      },
+        type: '',
+        onList: true,
+      }
+    
     ];
-    name = "";
-    quantity = "";
+    console.log('ITEMS---->', items);
+
+    storeItems = [{
+    
+      ingredients: [items.slice(-1)[0]]
+    }]
+    console.log('storeItems---->', storeItems);
+    $groceryListStore = [...$groceryListStore, storeItems[0]]
+
+
   };
 
   const remove = (item) => {
+    item.onList = false;
     items = items.filter((i) => i !== item);
-    console.log("clicked to remove", item);
+    // storeItems = storeItems.filter((i) => i.ingredients[0] !== item);
+    // _.set(storeItems, 'ingredients.onList', false)
+    // $groceryListStore = [...$groceryListStore, storeItems[0]]
+
   };
+
+
 </script>
 
 <Container>
   <div>
     <h1>Shopping List</h1>
     <form on:submit|preventDefault={addItem}>
+
       <label for="name">Add an item</label>
       <div class="inputs">
         <input id="name" type="text" placeholder="name" bind:value={name} />
@@ -216,8 +152,17 @@ addAmountsOfDuplicates(recipeIngredients)
           bind:value={quantity}
         />
       </div>
+      <!-- <button on:submit|preventDefault={() => addItem()}>Add </button> -->
+
       <button on:submit|preventDefault={addItem}>Add </button>
     </form>
+    <h4>Ingredients found in store:</h4>
+    {#each groceryList as grocery}
+      {#each grocery.ingredients as ingredient}
+
+        <p>{ingredient.name}</p>
+      {/each}
+    {/each}
 
     <ul>
       {#each items as item}
@@ -238,6 +183,7 @@ addAmountsOfDuplicates(recipeIngredients)
           </div>
         </li>
       {/each}
+
     </ul>
   </div>
 </Container>
