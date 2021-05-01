@@ -4,7 +4,7 @@
   import ShoppingListLanding from './components/ShoppingListLanding.svelte';
   import FavoritesLanding from "./components/FavoritesLanding.svelte";
   import Favorites from "./components/Favorites.svelte";
-  import recipeData from "./json/recipes.json";
+//   import recipeData from "./json/recipes.json";
   import _ from "lodash";
   import { Card, CardBody, CardFooter } from 'sveltestrap';
   import IoMdHeart from 'svelte-icons/io/IoMdHeart.svelte';
@@ -12,6 +12,14 @@
   import SearchRecipes from "./components/SearchRecipes.svelte";
   import NewRecipe from "./components/NewRecipe.svelte";
   import Modal from "./components/Modal.svelte"
+  import recipeStore from "./RecipeStore"
+
+// ------- pulling data from store ------- //
+let recipeData = []
+recipeStore.subscribe((data) => {
+    recipeData = data
+})
+// ------- pulling data from store ------- //
 
   let query;
     let foundRecipes = [];
@@ -155,23 +163,15 @@
             {/each}
         {:else}
             {#each foundRecipes as recipe}
-                <Card>
-                    <CardBody>
-                        <img class="card-image" src="{recipe.image}" alt="anything">
-                    </CardBody>
-                    <CardFooter>
-                        <div class="footer">
-                            <p>{recipe.name}</p>
-                            <div class="icon" on:click={() => onFavoriteClick(recipe)}>
-                                {#if recipe.favorite}
-                                    <IoMdHeart />
-                                {:else}
-                                    <IoMdHeartEmpty />
-                                {/if}
-                            </div>
+                <div class="recipe-card">
+                    <img class="recipe-card-img" src="{recipe.image}" alt="anything">
+                    <div class="recipe-card-info">
+                        <h5 on:click={displayRecipe(recipe), modal.show()}>{recipe.name}</h5>
+                        <div class="icon" on:click={() => onFavoriteClick(recipe)}>
+                            <IoMdHeart />
                         </div>
-                    </CardFooter>
-                </Card>
+                    </div>
+                </div>
             {/each}
         {/if}
     </div>
