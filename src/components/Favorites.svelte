@@ -1,12 +1,16 @@
 <script>
-    import recipeData from '../json/recipes.json';
     import Modal from "./Modal.svelte"
     import groceryListStore from '../store.js'
+    import recipeStore from '../RecipeStore';
 
     // -------------- store data -------------- //
     let groceryList = []
     groceryListStore.subscribe((data) => { // keeps track of updates to the store, sends data to "grocery list which can then be looped through/displayed"
         groceryList = data
+    })
+    let recipeList = []
+    recipeStore.subscribe((data) => { // keeps track of updates to the store, sends data to "grocery list which can then be looped through/displayed"
+        recipeList = data
     })
     // -------------- store data end -------------- //
 
@@ -78,7 +82,7 @@
 
 <!-- popup that displays whateve recipe is passed into it-->
 <!-- modal styling can be found on Modal.svelte-->
-<Modal bind:this={modal}> 
+<Modal bind:this={modal}>
     <!-- Individual recipe card - styling can be found below -->
     <div class="modal-card">
         <img class="modal-img" src="{selectedRecipe.image}" alt="anything">
@@ -120,7 +124,7 @@
 </Modal>
 
 <div class="card-container">
-    {#each recipeData as recipe}
+    {#each recipeList as recipe}
         {#if recipe.favorite}
             <div class="recipe-card">
                 <img class="recipe-card-img" src="{recipe.image}" alt="anything">
@@ -136,7 +140,7 @@
 </div>
 
 
-<style>  
+<style>
 
     /* ----------- MODAL STYLING ------------ */
     h5 {

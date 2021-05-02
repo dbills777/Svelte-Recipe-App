@@ -33,6 +33,7 @@
           name,
           rating,
           instructions,
+          ingredients: [],
           image: 'https://picsum.photos/200/300',
         }
       )
