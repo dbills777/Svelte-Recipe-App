@@ -145,23 +145,18 @@
 <div class="card-container">
 
     {#each recipeList as recipe}
-
-    {#each recipes as recipe}
-
         {#if recipe.favorite}
             <div class="recipe-card">
                 <img class="recipe-card-img" src="{recipe.image}" alt="anything">
                 <div class="recipe-card-info">
                     <h5 on:click={displayRecipe(recipe), modal.show()}>{recipe.name}</h5>
-
                     <div class="icon" on:click={() => onFavoriteClick(recipe)}>
                         {#if recipe.favorite}
                             <IoMdHeart />
                         {:else}
                             <IoMdHeartEmpty />
-                        {/if}  
+                        {/if}
                     </div>
-
                 </div>
             </div>
         {/if}

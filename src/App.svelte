@@ -19,8 +19,7 @@ import recipeStore from "./RecipeStore";
     recipeStore.subscribe((data) => { // keeps track of updates to the store, sends data to "grocery list which can then be looped through/displayed"
         recipeList = data
     })
-=======
-  import recipeStore from "./RecipeStore"
+
 
 // ------- pulling data from store ------- //
 let recipeData = []
