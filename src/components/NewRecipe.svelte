@@ -21,7 +21,6 @@
     recipeStore.subscribe((data) => {
         recipeList = data
     })
-    // console.log(recipeList)
     // -------------- store data end -------------- //
 
 
@@ -39,19 +38,7 @@
       )
     name = "";
     rating = ""
-    console.log(recipeList)
-      // let newRecipe =
-      // [
-      //       {
-      //     id: Math.floor(Math.random() * (500 - 100) + 100),
-      //     name,
-      //     rating,
-      //     instructions,
-      //   },
-      // ]
-
         $recipeStore = [ ...recipeList]
-        // message = true;
 
   };
     const addIngredient = () => {
@@ -91,7 +78,6 @@
 
       _.forEach(value.ingredients, function (i) {
 
-        // console.log("i------", i);
         recipeIngredients.push(i);
       });
       recipeIngredients.sort((a,b) => {
@@ -103,13 +89,11 @@
         if (typeA > typeB) {
           return 1;
         }
-        // console.log('type--', typeA, typeB);
         return 0;
       })
       return recipeIngredients;
     }
   });
-  // console.log("recipes----", recipeIngredients);
 
   let items = [
     ...recipeIngredients,
