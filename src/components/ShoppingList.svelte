@@ -1,6 +1,5 @@
 <script>
   import { Container } from "sveltestrap";
-  import recipeData from "../json/recipes.json";
   import _ from "lodash";
   import groceryListStore from "../store.js";
 
@@ -11,12 +10,10 @@
     // keeps track of updates to the store, sends data to "grocery list which can then be looped through/displayed"
     groceryList = data;
   });
-  console.log("groceryList----->", groceryList);
 
   _.map(groceryList, (items) => {
       _.forEach(items, (ingredients) => {
           _.map(ingredients, (i) => {
-            console.log('i', i);
             const isOnList = _.get(i, 'onList');
             if (isOnList) {
             recipeIngredients.push(i)
@@ -24,7 +21,6 @@
           })
       })
   })
-  console.log('recipeIngred--', recipeIngredients);
 
 
 
@@ -98,6 +94,7 @@
 
   let name = "";
   let quantity = "";
+  let unit = "";
 
 
   const addItem = () => {
@@ -106,20 +103,18 @@
       ...items,
       {
         name,
-        unit: '',
+        unit,
         quantity,
         type: '',
         onList: true,
       }
     
     ];
-    console.log('ITEMS---->', items);
 
     storeItems = [{
     
       ingredients: [items.slice(-1)[0]]
     }]
-    console.log('storeItems---->', storeItems);
     $groceryListStore = [...$groceryListStore, storeItems[0]]
 
 
@@ -151,22 +146,30 @@
           placeholder="quantity"
           bind:value={quantity}
         />
-      </div>
-      <!-- <button on:submit|preventDefault={() => addItem()}>Add </button> -->
+        <input
+        id="unit"
+        type="text"
+        placeholder="unit"
+        bind:value={unit}
+      />
 
+      <select name="type" id="type">
+        <option value="please select">Select type</option>
+        <option value="canned goods">Canned Goods</option>
+        <option value="condiments">Condiments</option>
+        <option value="dairy">Dairy</option>
+        <option value="meat">Meat</option>
+        <option value="produce">Produce</option>
+        <option value="spices">Spices</option>
+
+      </select> 
+      </div>
       <button on:submit|preventDefault={addItem}>Add </button>
     </form>
-    <h4>Ingredients found in store:</h4>
-    {#each groceryList as grocery}
-      {#each grocery.ingredients as ingredient}
-
-        <p>{ingredient.name}</p>
-      {/each}
-    {/each}
 
     <ul>
       {#each items as item}
-        <p>{item.type}</p>
+      <p>{item.type}</p>
         <li class:done={item.done}>
           <div class="item-name">
             <input type="checkbox" bind:checked={item.done} />
@@ -182,7 +185,11 @@
             <span id="remove" on:click={() => remove(item)}>&times;</span>
           </div>
         </li>
+
       {/each}
+
+
+
 
     </ul>
   </div>
@@ -191,7 +198,7 @@
 <style>
   form div.inputs {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
   li {
