@@ -1,14 +1,34 @@
 <script>
-    import recipeData from '../json/recipes.json';
     import Modal from "./Modal.svelte"
     import groceryListStore from '../store.js'
+    import recipeStore from '../RecipeStore';
+    import IoMdHeart from 'svelte-icons/io/IoMdHeart.svelte';
+    import IoMdHeartEmpty from 'svelte-icons/io/IoMdHeartEmpty.svelte';
 
-    // -------------- store data -------------- //
+
+    // -------------- grocery list store data -------------- //
     let groceryList = []
     groceryListStore.subscribe((data) => { // keeps track of updates to the store, sends data to "grocery list which can then be looped through/displayed"
         groceryList = data
     })
+
+    let recipeList = []
+    recipeStore.subscribe((data) => { // keeps track of updates to the store, sends data to "grocery list which can then be looped through/displayed"
+        recipeList = data
+    })
     // -------------- store data end -------------- //
+
+    // -------------- grocery list store data end -------------- //
+
+
+    // -------------- recipe store data -------------- //
+    let recipes = []
+    recipeStore.subscribe((data) => {
+        recipes = data
+    })
+
+    // -------------- recipe store data -------------- //
+
 
 
     // -------------- modal -------------- //
@@ -20,7 +40,11 @@
     }
     // -------------- modal end -------------- //
 
-    let message = false
+    let added = false
+    let added_message = ''
+    let success;
+    let message;
+    let user_message = false;
 
     // -------------- Adding to store -------------- //
 
@@ -31,6 +55,7 @@
 
     function addIndividualIngredient(item, i) { // adds individual ingredient object to grocery store array
         console.log(item.ingredients[i])
+        added_message = item.ingredients[i].name
         let groceryItem = {
             "ingredients": [
                 {
@@ -43,28 +68,29 @@
             ]
         }
         $groceryListStore = [...$groceryListStore, groceryItem]
-        message = true;
+        added = true;
+        setTimeout(() => {
+            added = false;
+        }, 3000);
     }
     // -------------- adding to store end -------------- //
-    function checkArray(arr, name){ // checks for object value within an array
-        const found = arr.some(n => n.name == name);
-        if (found) {
-            return true;
+
+    const onFavoriteClick = (recipe) => {
+        recipe.favorite = !recipe.favorite;
+        if (recipe.favorite) {
+            message = `Successfully added ${recipe.name} to favorites.`;
+            success = true;
         } else {
-            return false;
+            success = false;
+            message = `Successfully removed ${recipe.name} from favorites.`;
         }
+        user_message = true;
+        setTimeout(() => {
+            user_message = !user_message;
+        }, 2500);
     }
 
-    function checkGroceryList(list, name) { // loops through array of objects, checks each ingredient object array for value
-        list.forEach(function (arrayItem) {
-            console.log(checkArray(arrayItem.ingredients, name))
-            checkArray(arrayItem.ingredients, name)
-        })
-    }
 
-    // testing out if certain ingredients are already in the grocery list saved in the store
-    checkGroceryList(groceryList, 'test ingredient 1')
-    checkGroceryList(groceryList, 'test')
 
 
 </script>
@@ -78,7 +104,7 @@
 
 <!-- popup that displays whateve recipe is passed into it-->
 <!-- modal styling can be found on Modal.svelte-->
-<Modal bind:this={modal}> 
+<Modal bind:this={modal}>
     <!-- Individual recipe card - styling can be found below -->
     <div class="modal-card">
         <img class="modal-img" src="{selectedRecipe.image}" alt="anything">
@@ -90,23 +116,18 @@
                 <tr>
                   <th>Ingredient</th>
                   <th>Amount</th>
-                  <th>On List</th>
                 </tr>
                 {#each selectedRecipe.ingredients as ingredient, i}
                 <tr class="table-fade" on:click={() => addIndividualIngredient(selectedRecipe, i)}>
                   <td>{ingredient.name}</td>
                   <td>{ingredient.quantity} {ingredient.unit}</td>
-                  {#if checkGroceryList(groceryList, `${ingredient.name}`)}
-                    <td>yes</td>
-                    {:else}
-                     <td>no</td>
-                    {/if}
                 </tr>
                 {/each}
               </table>
 
-              {#if message}
-              <p>added item</p>
+              {#if added}
+              <p class="green">Added {added_message} to your grocery list</p>
+              <br>
               {/if}
 
             <div>
@@ -120,23 +141,33 @@
 </Modal>
 
 <div class="card-container">
-    {#each recipeData as recipe}
+
+    {#each recipeList as recipe}
         {#if recipe.favorite}
             <div class="recipe-card">
                 <img class="recipe-card-img" src="{recipe.image}" alt="anything">
                 <div class="recipe-card-info">
                     <h5 on:click={displayRecipe(recipe), modal.show()}>{recipe.name}</h5>
-                    <!-- <div class="icon" on:click={() => onFavoriteClick(recipe)}>
-                        <IoMdHeart />
-                    </div> -->
+                    <div class="icon" on:click={() => onFavoriteClick(recipe)}>
+                        {#if recipe.favorite}
+                            <IoMdHeart />
+                        {:else}
+                            <IoMdHeartEmpty />
+                        {/if}
+                    </div>
                 </div>
             </div>
         {/if}
     {/each}
 </div>
 
+{#if user_message}
+<div class:green={success} class:red={!success}>
+    {message}
+</div>
+{/if}
 
-<style>  
+<style>
 
     /* ----------- MODAL STYLING ------------ */
     h5 {
@@ -146,6 +177,9 @@
 
     table {
         padding: .5rem;
+    }
+    .green {
+        color: green;
     }
 
     .table-fade {
@@ -226,11 +260,11 @@
         /* justify-content: space-evenly; */
     }
 
-    /* .icon {
+    .icon {
         width: 32px;
         height: 32px;
         cursor: pointer;
-    } */
+    }
 
     /* ----------- CARD STYLING ------------ */
 
